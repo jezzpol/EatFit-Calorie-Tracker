@@ -21,6 +21,7 @@ public class FoodIntakeController {
     private final FoodIntakeServiceImpl foodIntakeService;
 
     @PostMapping
+    @Operation(summary = "Создать прием пищи", description = "Создаем прием пищи")
     public ResponseEntity<FoodIntake> createFoodIntake(@RequestBody FoodIntakeRequest req)
             throws UserException {
 
@@ -33,6 +34,7 @@ public class FoodIntakeController {
     }
 
     @GetMapping("/{userId}")
+    @Operation(summary = "Получить прием пищи по id", description = "Получаем прием пищи по id")
     public ResponseEntity<List<FoodIntake>> getFoodIntakesByUserId(@PathVariable Long userId)
             throws UserException {
 
@@ -41,6 +43,7 @@ public class FoodIntakeController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Удалить прием пищи по id", description = "Удаляем прием пищи по id")
     public ResponseEntity<String> deleteFoodInstake(@PathVariable Long id)
             throws FoodIntakeException {
 
