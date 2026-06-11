@@ -15,7 +15,7 @@ services:
     image: jezzpol/eatfit:0.0.1-SNAPSHOT
     environment:
       - SPRING_PROFILES_ACTIVE=dockermvn
-      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${DB_HOST}:5432/${DB_NAME}
       - SPRING_DATASOURCE_USERNAME=${DB_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
     ports:
