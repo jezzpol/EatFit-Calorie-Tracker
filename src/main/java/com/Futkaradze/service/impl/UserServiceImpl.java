@@ -55,4 +55,32 @@ public class UserServiceImpl implements UserService {
         existingUser.setTarget(updatedUser.getTarget());
         return userRepository.save(existingUser);
     }
+
+    private void calculateDailyCalories(User user) {
+        double BMR = calculateBMR(user);
+
+        double activityLevel = getActivityLevel();
+
+        int dailyCalories = (int) Math.round(BMR * activityLevel);
+
+        user.setDailyCalories(dailyCalories);
+    }
+
+    private double calculateBMR(User user) {
+        if (user.getGender() == Gender.MALE) {
+            return 88.362
+                    + (13.397 * user.getWeight())
+                    + (4.799 * user.getHeight())
+                    - (5.677 * user.getAge());
+        } else {
+            return 447.593
+                    + (9.247 * user.getWeight())
+                    + (3.098 * user.getHeight())
+                    - (4.330 * user.getAge());
+        }
+    }
+
+    private double getActivityLevel() { // Вынесено отдельно для расширяемости
+        return 1.35; // Умеренная активность
+    }
 }
